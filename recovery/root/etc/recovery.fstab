@@ -1,0 +1,2 @@
+/dev/block/bootdevice/by-name/system       /               ext4    ro,barrier=1                                                    wait,slotselect,avb,first_stage_mount
+/dev/block/bootdevice/by-name/vendor       /vendor         ext4    ro,barrier=1                                                    wait,slotselect,avb,first_stage_mount

@@ -1,0 +1,6 @@
+root folder:
+This folder contains files from https://github.com/RaghuVarma331/android_device_nokia_SLD_sprout-TWRP and files that we modified by me.
+It's a mess.
+init.recovery.qcom.rc
+This file also works, instead of the current one, but it gives some errors about permission denied.
+(Control message: Could not find 'android.hardware.keymaster@4.0::IKeymasterDevice/default' for ctl.interface_start from pid: 373 (/system/bin/hwservicemanager))
