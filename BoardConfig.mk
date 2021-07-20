@@ -21,15 +21,13 @@ TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := cortex-a53
+TARGET_CPU_VARIANT := generic
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
-
-TARGET_SUPPORTS_64_BIT_APPS := true
 
 # Enable CPUSets
 ENABLE_CPUSETS := true
@@ -95,6 +93,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.
 TARGET_RECOVER_PIXEL_FORMAT := RGBA
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_USE_TOOLBOX := true
+TWRP_INCLUDE_LOGCAT := true
 # RECOVERY_VARIANT := twrp
 
 # Asian region languages
