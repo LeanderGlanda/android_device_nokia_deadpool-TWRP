@@ -61,6 +61,9 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
+TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/recovery/root/system/etc/recovery.fstab
+TARGET_RECOVERY_WIPE := $(PLATFORM_PATH)/recovery/root/system/etc/recovery.wipe
+
 # A/B device flags
 TARGET_NO_KERNEL := false
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
@@ -74,8 +77,10 @@ TARGET_CPU_ABI_LIST_32_BIT := armeabi-v7a,armeabi
 TARGET_CPU_ABI_LIST_64_BIT := arm64-v8a
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
+BOARD_USES_QCOM_FBE_DECRYPTION := true
 
 # TWRP specific build flags
+ALLOW_MISSING_DEPENDENCIES := true
 RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
@@ -87,21 +92,28 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 80
 TW_THEME := portrait_hdpi
-TARGET_RECOVERY_DEVICE_MODULES += android.hardware.boot@1.0
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
-# TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888" (I'm not sure which to use)
 TARGET_RECOVER_PIXEL_FORMAT := RGBA
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_USE_TOOLBOX := true
 TWRP_INCLUDE_LOGCAT := true
-# RECOVERY_VARIANT := twrp
+# TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888" (I'm not sure which to use)
+RECOVERY_VARIANT := twrp
 
 # Asian region languages
 TW_EXTRA_LANGUAGES := true
 
 # Workaround for error copying vendor files to recovery ramdisk
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+# BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+# TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_VENDOR := vendor
+
+TARGET_RECOVERY_DEVICE_MODULES += \
+	android.hardware.boot@1.0 \
+	android.hidl.base@1.0
+
+# SELinux
+BOARD_SEPOLICY_DIRS += device/nokia/deadpool/sepolicy
 
 # Extras
 #BOARD_SUPPRESS_SECURE_ERASE := true
