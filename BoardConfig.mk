@@ -97,6 +97,7 @@ TARGET_RECOVER_PIXEL_FORMAT := RGBA
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_USE_TOOLBOX := true
 TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
 # TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888" (I'm not sure which to use)
 RECOVERY_VARIANT := twrp
 
@@ -104,13 +105,28 @@ RECOVERY_VARIANT := twrp
 TW_EXTRA_LANGUAGES := true
 
 # Workaround for error copying vendor files to recovery ramdisk
-# BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-# TARGET_COPY_OUT_VENDOR := vendor
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
 
 TARGET_RECOVERY_DEVICE_MODULES += \
-	android.hardware.boot@1.0 \
-	android.hidl.base@1.0
+	android.hidl.base@1.0 \
+	vendor.display.config@1.0 \
+	vendor.display.config@2.0 \
+	libandroidicu \
+	libdisplayconfig.qti \
+	libxml2
+
+RECOVERY_LIBRARY_SOURCE_FILES += \
+	$(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
+	$(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so \
+	$(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/libdisplayconfig.qti.so \
+	$(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so
+	
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so
+
+PRODUCT_COPY_FILES += \
+    $(OUT_DIR)/target/product/deadpool/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libandroidicu.so
 
 # SELinux
 BOARD_SEPOLICY_DIRS += device/nokia/deadpool/sepolicy
