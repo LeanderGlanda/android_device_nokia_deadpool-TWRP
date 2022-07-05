@@ -36,11 +36,14 @@ PRODUCT_PACKAGES_DEBUG += \
 # Boot control HAL
 PRODUCT_PACKAGES += \
 	bootctrl.sdm429
+	
+# Encryption
+PRODUCT_PACKAGES += \
+	qcom_decrypt \
+	qcom_decrypt_fbe \
+	tzdata_twrp
 
 PRODUCT_PACKAGES += \
-# PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-# SHARED_LIBRARY_MODULE := \
-	bootctrl.sdm429 \
 	libgptutils \
 	libz
 
@@ -48,9 +51,13 @@ PRODUCT_PACKAGES += \
 	charger_res_images \
 	charger \
 	
+# Additional libs required by encryption services
+PRODUCT_HOST_PACKAGES += \
+	libandroidicu
+	
 # Partitions (listed in the file) to be wiped under recovery.
 TARGET_RECOVERY_WIPE := \
-    device/nokia/deadpool/recovery/root/etc/recovery.wipe	
+	device/nokia/deadpool/recovery/root/etc/recovery.wipe
 
 ## Device identifier. This must come after all inclusions
 

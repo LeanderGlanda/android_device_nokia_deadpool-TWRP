@@ -25,21 +25,12 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+import /init.recovery.qcom_decrypt.rc
+
 on fs
 	wait /dev/block/platform/soc/${ro.boot.bootdevice}
 	symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
-#	system doesn't get mounted if the mount_all is commented out or not
-#	mount_all /etc/fstab.qcom --early
-
-#service hwservicemanager /system/bin/hwservicemanager
-#    user root
-#    group root
-#    disabled
-#    onrestart setprop hwservicemanager.ready false
-#    seclabel u:r:recovery:s0
 
 on boot
-    setprop sys.usb.config mtp,adb
+	setprop sys.usb.config mtp,adb
 
-#on init
-#    start hwservicemanager
