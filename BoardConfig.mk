@@ -114,13 +114,25 @@ TARGET_RECOVERY_DEVICE_MODULES += \
 	vendor.display.config@2.0 \
 	libandroidicu \
 	libdisplayconfig.qti \
-	libxml2
+	android.hidl.allocator@1.0 \
+	android.hidl.memory@1.0 \
+	android.hidl.memory.token@1.0 \
+	android.system.suspend@1.0 \
+	libhardware_legacy \
+	libxml2 \
+	libhidlmemory
 
 RECOVERY_LIBRARY_SOURCE_FILES += \
 	$(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
 	$(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so \
 	$(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/libdisplayconfig.qti.so \
-	$(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so
+	$(TARGET_OUT_SHARED_LIBRARIES)/libhardware_legacy.so \
+	$(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
+	$(TARGET_OUT_SHARED_LIBRARIES)/libhidlmemory.so \
+	$(TARGET_OUT_SHARED_LIBRARIES)/android.system.suspend@1.0.so \
+	$(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.allocator@1.0.so \
+	$(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.memory@1.0.so \
+	$(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.memory.token@1.0.so
 	
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so
