@@ -38,15 +38,26 @@ BOARD_PROVIDES_GPTUTILS := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_serial_dm,0x78B0000 androidboot.usbconfigfs=true loop.max_part=7 buildvariant=user
-BOARD_KERNEL_BASE        := 0x80000000
-BOARD_KERNEL_OFFSET := 0x00000000
-BOARD_KERNEL_PAGESIZE    := 2048
-BOARD_KERNEL_TAGS_OFFSET := 0x80000100
-BOARD_RAMDISK_OFFSET     := 0x81000000
-# BOARD_SECOND_OFFSET := 0x00f00000
-BOARD_KERNEL_IMAGE_NAME := kernel
 TARGET_PREBUILT_KERNEL := device/nokia/deadpool/prebuilt/kernel
+BOARD_BOOT_HEADER_VERSION := 1
+BOARD_KERNEL_BASE        := 0x80000000
+BOARD_KERNEL_OFFSET := 0x00008000
+BOARD_KERNEL_PAGESIZE    := 2048
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_SECOND_OFFSET := 0x00f00000
+BOARD_RAMDISK_OFFSET     := 0x01000000
+BOARD_KERNEL_IMAGE_NAME := kernel
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
 
+# mkbootimg
+BOARD_MKBOOTIMG_ARGS := --base $(BOARD_KERNEL_BASE)
+BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --kernel_offset $(BOARD_KERNEL_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --second_offset $(BOARD_SECOND_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
@@ -113,7 +124,6 @@ TARGET_RECOVERY_DEVICE_MODULES += \
 	vendor.display.config@1.0 \
 	vendor.display.config@2.0 \
 	libandroidicu \
-	libdisplayconfig.qti \
 	android.hidl.allocator@1.0 \
 	android.hidl.memory@1.0 \
 	android.hidl.memory.token@1.0 \
@@ -125,7 +135,6 @@ TARGET_RECOVERY_DEVICE_MODULES += \
 RECOVERY_LIBRARY_SOURCE_FILES += \
 	$(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
 	$(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so \
-	$(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/libdisplayconfig.qti.so \
 	$(TARGET_OUT_SHARED_LIBRARIES)/libhardware_legacy.so \
 	$(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
 	$(TARGET_OUT_SHARED_LIBRARIES)/libhidlmemory.so \
