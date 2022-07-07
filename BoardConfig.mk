@@ -37,7 +37,7 @@ ENABLE_SCHEDBOOST := true
 BOARD_PROVIDES_GPTUTILS := true
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_serial_dm,0x78B0000 androidboot.usbconfigfs=true loop.max_part=7 buildvariant=user
+BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_serial_dm,0x78B0000 androidboot.usbconfigfs=true loop.max_part=7
 TARGET_PREBUILT_KERNEL := device/nokia/deadpool/prebuilt/kernel
 BOARD_BOOT_HEADER_VERSION := 1
 BOARD_KERNEL_BASE        := 0x80000000
