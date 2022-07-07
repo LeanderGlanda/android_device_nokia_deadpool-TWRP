@@ -35,6 +35,7 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
+	bootctrl \
 	bootctrl.sdm429
 	
 # Encryption
