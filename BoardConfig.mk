@@ -112,6 +112,10 @@ TARGET_USES_LOGD := true
 # TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888" (I'm not sure which to use)
 RECOVERY_VARIANT := twrp
 
+# Exclude a few things so we get some free space
+TW_EXCLUDE_PYTHON := true
+TW_EXCLUDE_NANO := true
+
 # Asian region languages
 TW_EXTRA_LANGUAGES := true
 
